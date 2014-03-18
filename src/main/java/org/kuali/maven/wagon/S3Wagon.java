@@ -99,7 +99,7 @@ public class S3Wagon extends AbstractWagon implements RequestFactory {
 	public static final int DEFAULT_MAX_THREAD_COUNT = 50;
 	public static final int DEFAULT_DIVISOR = 50;
 	public static final int DEFAULT_READ_TIMEOUT = 60 * 1000;
-	public static final CannedAccessControlList DEFAULT_ACL = CannedAccessControlList.PublicRead;
+	public static final CannedAccessControlList DEFAULT_ACL = CannedAccessControlList.Private;
 	private static final File TEMP_DIR = getCanonicalFile(System.getProperty("java.io.tmpdir"));
 	private static final String TEMP_DIR_PATH = TEMP_DIR.getAbsolutePath();
 
