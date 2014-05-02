@@ -20,8 +20,10 @@ import java.util.List;
 
 import org.apache.maven.wagon.authentication.AuthenticationInfo;
 
+import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSCredentialsProviderChain;
+import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.auth.InstanceProfileCredentialsProvider;
 import com.amazonaws.auth.SystemPropertiesCredentialsProvider;
@@ -31,6 +33,8 @@ import com.google.common.base.Optional;
  * This chain searches for AWS credentials in system properties -> environment variables -> ~/.m2/settings.xml -> Amazon's EC2 Instance Metadata Service
  */
 public final class MavenAwsCredentialsProviderChain extends AWSCredentialsProviderChain {
+    /** Environment variable name for the AWS secret key */
+    private static final String SESSION_TOKEN_ENV_VAR = "AWS_SECURITY_TOKEN";
 
 	public MavenAwsCredentialsProviderChain(Optional<AuthenticationInfo> auth) {
 		super(getProviders(auth));
@@ -55,6 +59,22 @@ public final class MavenAwsCredentialsProviderChain extends AWSCredentialsProvid
 		providers.add(new InstanceProfileCredentialsProvider());
 
 		return providers.toArray(new AWSCredentialsProvider[providers.size()]);
+	}
+	
+	@Override
+	public AWSCredentials getCredentials() {
+		AWSCredentials creds = super.getCredentials();
+		if (creds instanceof AWSSessionCredentials && 
+				((AWSSessionCredentials) creds).getSessionToken() != null &&
+				((AWSSessionCredentials) creds).getSessionToken().length() > 0) {
+			return creds;
+		}
+        String sessionToken = System.getenv(SESSION_TOKEN_ENV_VAR);
+		if (sessionToken == null || sessionToken.length() == 0) {
+			return creds;
+		}
+		return new AwsSessionCredentials(creds.getAWSAccessKeyId(), 
+				creds.getAWSSecretKey(), sessionToken);
 	}
 
 }
