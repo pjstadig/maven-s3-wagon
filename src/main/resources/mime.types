@@ -112,7 +112,7 @@ text/javascript js
 # Add some maven friendly mime-type mappings
 # .sha1 and .md5 are hashes Maven uses to verify files have not been tampered with
 # .pom is how Maven renames the pom.xml files when storing them into the repo
-text/plain  java jsf jspf txt pom sha1 md5 xml asc
+text/plain  java jsf jspf txt pom sha1 md5 asc
 text/richtext rtx
 text/tab-separated-values tsv
 text/vnd.sun.j2me.app-descriptor  jad
@@ -120,6 +120,7 @@ text/vnd.wap.wml  wml
 text/vnd.wap.wmlscript  wmls
 text/x-component  htc
 text/x-setext etx
+text/xml xml
 video/mp4 mp4
 video/mpeg  mpe mpeg mpg
 video/mpeg2 mpv2
