@@ -100,7 +100,7 @@ limitations under the License.
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk</artifactId>
-      <version>1.6.4</version>
+      <version>1.9.14</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
