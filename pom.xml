@@ -27,7 +27,7 @@ limitations under the License.
     It enables Maven to download files from and deploy files to S3.
     It draws heavily from code developed by Ben Hale at SpringSource
   </description>
-  <url>http://${kuali.site.hostname}/maven/wagons/${project.artifactId}/${project.version}/</url>
+  <url>http://github.com/pjstadig/maven-s3-wagon/</url>
   <properties>
     <project.java.version>1.6</project.java.version>
   </properties>
@@ -161,9 +161,9 @@ limitations under the License.
     </dependency>
   </dependencies>
   <scm>
-    <connection>scm:git:git@github.com:jcaddel/maven-s3-wagon.git</connection>
-    <developerConnection>scm:git:git@github.com:jcaddel/maven-s3-wagon.git</developerConnection>
-    <url>https://github.com/jcaddel/maven-s3-wagon</url>
+    <connection>scm:git:git@github.com:pjstadig/maven-s3-wagon.git</connection>
+    <developerConnection>scm:git:git@github.com:pjstadig/maven-s3-wagon.git</developerConnection>
+    <url>https://github.com/pjstadig/maven-s3-wagon</url>
     <tag>HEAD</tag>
   </scm>
   <distributionManagement>
